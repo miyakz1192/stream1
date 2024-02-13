@@ -1,1 +1,3 @@
-COKKIE_SITE_NAME="stream1"
+COKKIE_SITE_NAME=".stream1.com"
+COKKIE_ALL_NAME="stream1"
+COKKIE_TOKEN_NAME="token"
