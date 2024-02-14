@@ -1,0 +1,15 @@
+[Unit]
+Description=Token Server
+
+[Service]
+ExecStart=/home/miyakz/stream1/token_server/boot_token_server.sh
+Restart=always
+User=miyakz
+RestartSec=5
+StartLimitInterval=10
+StartLimitBurst=10
+
+
+[Install]
+WantedBy=multi-user.target
+
