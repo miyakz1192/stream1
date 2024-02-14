@@ -9,7 +9,7 @@
     <h1>File List</h1>
     <ul>
         {% for file_name in file_names %}
-	<li><a href={{file_name}}>{{ file_name }}</a></li>
+	<li><a href={{"/goto/" + file_name}}>{{ file_name }}</a></li>
         {% endfor %}
     </ul>
 </body>

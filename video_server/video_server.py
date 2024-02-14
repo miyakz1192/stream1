@@ -5,6 +5,9 @@ import os
 import re
 import urllib
 import sys
+from stream_sv_lib import *
+
+app = Flask(__name__)
 
 def main(port):
     httpServer = ThreadingHTTPServer(('', port), RangeRequestNoCacheHTTPRequestHandler)
@@ -16,6 +19,15 @@ class ThreadingHTTPServer(socketserver.ThreadingMixIn, http.server.HTTPServer):
 RANGE_BYTES_RE = re.compile(r'bytes=(\d*)-(\d*)?\Z')
 
 class RangeRequestNoCacheHTTPRequestHandler(http.server.SimpleHTTPRequestHandler):
+
+    def do_GET(self):
+        if has_valid_token(using_mw="simple", self=self):
+            # 上位クラスの処理に委譲
+            super().do_GET()
+
+
+        self.send_response(400)
+
     # overriding
     def send_head(self):
         if 'Range' not in self.headers:
@@ -130,6 +142,7 @@ class RangeRequestNoCacheHTTPRequestHandler(http.server.SimpleHTTPRequestHandler
             outfile.write(buf)
 
 
-port = int(sys.argv[1])
+#port = int(sys.argv[1])
+port = 8080
 main(port)
 
